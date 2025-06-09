@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تمرین کلمات انگلیسی و شنیداری</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            background: #ffffff;
+            padding: 20px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            color: #ff5733;
+        }
+        .word-display {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-top: 20px;
+        }
+        #wordInput, #listenInput {
+            padding: 10px;
+            font-size: 18px;
+            margin-top: 20px;
+            width: 70%;
+            border-radius: 5px;
+        }
+        #checkButton, #listenButton , #listenCheckButton {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        #checkButton:hover, #listenButton:hover , #listenCheckButton {
+            background-color: #218838;
+        }
+        h1 {
+            color: #ff5733;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #ffcccb;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .href{
+            background-color: red;
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>تمرین کلمات انگلیسی</h1>
+        <p class="word-display" id="randomWord">کلمه را به درستی تایپ کنید</p>
+        <input id="wordInput" type="text" placeholder="کلمه را تایپ کنید..." />
+        <button id="checkButton">بررسی</button>
+        <p id="resultMessage"></p>
+    </div>
+    
+    <div class="container">
+        <h1>تمرین شنیداری</h1>
+        <button id="listenButton">پخش صدا</button>
+        <input id="listenInput" type="text" placeholder="کلمه یا جمله را تایپ کنید..." />
+        <button id="listenCheckButton">بررسی</button>
+        <p id="listenResultMessage"></p>
+    </div>
+
+    <div class="container">
+        <h1>کلمات انگلیسی</h1>
+        <table>
+            <tr>
+                <th>کلمه</th>
+            </tr>
+            <tr><td>Apple</td></tr>
+            <tr><td>Beautiful</td></tr>
+            <tr><td>Brave</td></tr>
+            <tr><td>Dream</td></tr>
+            <tr><td>Future</td></tr>
+            <tr><td>Hope</td></tr>
+            <tr><td>Journey</td></tr>
+            <tr><td>Kindness</td></tr>
+            <tr><td>Laugh</td></tr>
+            <tr><td>Success</td></tr>
+            <tr><td>Computer</td></tr>
+            <tr><td>Laptop</td></tr>
+            <tr><td>Energy</td></tr>
+            <tr><td>Smart</td></tr>
+            <tr><td>Learn</td></tr>
+            <tr><td>Happiness</td></tr>
+            <tr><td>Challenge</td></tr>
+            <tr><td>Strength</td></tr>
+            <tr><td>Memory</td></tr>
+            <tr><td>Knowledge</td></tr>
+        </table>
+    </div>
+
+    <div class="container">
+        <h1>جملات انگلیسی</h1>
+        <table>
+            <tr>
+                <th>جمله</th>
+            </tr>
+            <tr><td>The weather is very nice today.</td></tr>
+            <tr><td>She enjoys reading books in the library.</td></tr>
+            <tr><td>They are planning a trip to Europe next summer.</td></tr>
+            <tr><td>Learning a new language is very exciting.</td></tr>
+            <tr><td>He likes to play football with his friends on weekends.</td></tr>
+        </table>
+    </div>
+    <a class="href" href="گرامر زبان .html">برای بازگشت به سایت قبلی اینجا کلیک کنید </a>
+
+
+    <script>
+        const words = [
+            "Apple", "Beautiful", "Brave", "Dream", "Future", "Hope", "Journey", "Kindness", "Laugh", "Success",
+            "Computer", "Laptop", "Energy", "Smart", "Learn", "Happiness", "Challenge", "Strength", "Memory", "Knowledge"
+        ];
+
+        const sentences = [
+            "The weather is very nice today.",
+            "She enjoys reading books in the library.",
+            "They are planning a trip to Europe next summer.",
+            "Learning a new language is very exciting.",
+            "He likes to play football with his friends on weekends."
+        ];
+
+        const checkButton = document.getElementById("checkButton");
+        const wordInput = document.getElementById("wordInput");
+        const resultMessage = document.getElementById("resultMessage");
+        const randomWordElement = document.getElementById("randomWord");
+        let currentWord = words[Math.floor(Math.random() * words.length)];
+        randomWordElement.textContent = currentWord;
+
+        checkButton.addEventListener("click", function() {
+            const userInput = wordInput.value.trim();
+
+            if (userInput.toLowerCase() === currentWord.toLowerCase()) {
+                resultMessage.textContent = `درست است! شما کلمه '${currentWord}' را درست تایپ کردید.`;
+                resultMessage.style.color = "#28a745";
+            } else {
+                resultMessage.textContent = `متاسفم! شما کلمه '${currentWord}' را اشتباه تایپ کردید.`;
+                resultMessage.style.color = "#e74c3c";
+            }
+            currentWord = words[Math.floor(Math.random() * words.length)];
+            randomWordElement.textContent = currentWord;
+            wordInput.value = "";
+        });
+        
+        const listenButton = document.getElementById("listenButton");
+        const listenInput = document.getElementById("listenInput");
+        const listenCheckButton = document.getElementById("listenCheckButton");
+        const listenResultMessage = document.getElementById("listenResultMessage");
+        let currentListenText = Math.random() > 0.5 ? words[Math.floor(Math.random() * words.length)] : sentences[Math.floor(Math.random() * sentences.length)];
+        
+        listenButton.addEventListener("click", function() {
+            let speech = new SpeechSynthesisUtterance(currentListenText);
+            speech.lang = "en-US";
+            window.speechSynthesis.speak(speech);
+        });
+
+        listenCheckButton.addEventListener("click", function() {
+            const userListenInput = listenInput.value.trim();
+            if (userListenInput.toLowerCase() === currentListenText.toLowerCase()) {
+                listenResultMessage.textContent = `درست است! شما '${currentListenText}' را درست تایپ کردید.`;
+                listenResultMessage.style.color = "#28a745";
+            } else {
+                listenResultMessage.textContent = `متاسفم! شما '${currentListenText}' را اشتباه تایپ کردید.`;
+                listenResultMessage.style.color = "#e74c3c";
+            }
+            currentListenText = Math.random() > 0.5 ? words[Math.floor(Math.random() * words.length)] : sentences[Math.floor(Math.random() * sentences.length)];
+            listenInput.value = "";
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>آزمون زبان انگلیسی</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            background: #ffffff;
+            padding: 20px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            color: #ff5733;
+        }
+        .question {
+            font-size: 18px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .options {
+            list-style: none;
+            padding: 0;
+        }
+        .options li {
+            background-color: #eee;
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .options li:hover {
+            background-color: #ddd;
+        }
+        .correct {
+            color: green;
+            font-weight: bold;
+        }
+        .incorrect {
+            color: red;
+            font-weight: bold;
+        }
+        .href{
+            background-color: #ce0808;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>آزمون زبان انگلیسی</h1>
+        <div id="quiz"></div>
+    </div>
+    <a class="href" href="گرامر زبان .html">برای بازگشت به سایت قبلی اینجا کلیک کنید </a>
+    
+    <script>
+        const questions = [
+            { question: "What is the opposite of 'big'?", options: ["Small", "Tall", "Fast", "Bright"], answer: "Small" },
+            { question: "Which of these is a fruit?", options: ["Carrot", "Apple", "Cabbage", "Broccoli"], answer: "Apple" },
+            { question: "What is 2 + 2?", options: ["3", "4", "5", "6"], answer: "4" },
+            { question: "Which word is a noun?", options: ["Run", "Jump", "Dog", "Quickly"], answer: "Dog" },
+            { question: "Choose the correct verb: 'She ___ to school every day.'", options: ["Go", "Goes", "Going", "Went"], answer: "Goes" },
+            { question: "What is the past tense of 'eat'?", options: ["Ate", "Eaten", "Eating", "Eats"], answer: "Ate" },
+            { question: "What is the plural form of 'child'?", options: ["Childs", "Children", "Childes", "Childrens"], answer: "Children" },
+            { question: "Which is a synonym for 'happy'?", options: ["Sad", "Angry", "Joyful", "Bored"], answer: "Joyful" },
+            { question: "What is the capital of France?", options: ["Paris", "London", "Berlin", "Rome"], answer: "Paris" },
+            { question: "Which of these is a verb?", options: ["Run", "Table", "Bright", "Smart"], answer: "Run" },
+            { question: "What is the superlative form of 'fast'?", options: ["Faster", "Fastest", "More fast", "Most fast"], answer: "Fastest" },
+            { question: "Which word is an adverb?", options: ["Quickly", "House", "Blue", "Chair"], answer: "Quickly" },
+            { question: "What is the correct form of 'be' in past tense for 'I'?", options: ["Am", "Was", "Were", "Be"], answer: "Was" },
+            { question: "Which sentence is correct?", options: ["He go to school.", "She goes to school.", "They goes to school.", "We goes to school."], answer: "She goes to school." },
+            { question: "What is the opposite of 'dark'?", options: ["Black", "Bright", "Night", "Dim"], answer: "Bright" },
+            { question: "Who wrote 'Romeo and Juliet'?", options: ["Shakespeare", "Dickens", "Hemingway", "Fitzgerald"], answer: "Shakespeare" },
+            { question: "Which tense is this? 'She had eaten before I arrived.'", options: ["Past Perfect", "Present Perfect", "Past Simple", "Future Perfect"], answer: "Past Perfect" },
+            { question: "Which sentence is in passive voice?", options: ["The book was read by her.", "She reads the book.", "She is reading a book.", "She will read a book."], answer: "The book was read by her." },
+            { question: "What is the synonym of 'benevolent'?", options: ["Kind", "Cruel", "Lazy", "Greedy"], answer: "Kind" },
+            { question: "Which one is a modal verb?", options: ["Can", "Reads", "Going", "Ran"], answer: "Can" }
+        ];
+        
+        function loadQuiz() {
+            let quizContainer = document.getElementById("quiz");
+            quizContainer.innerHTML = "";
+            
+            questions.forEach((q, index) => {
+                let questionHTML = `<div class='question'>${index + 1}. ${q.question}</div>`;
+                questionHTML += `<ul class='options'>`;
+                q.options.forEach(option => {
+                    questionHTML += `<li onclick=\"checkAnswer(this, '${q.answer}')\">${option}</li>`;
+                });
+                questionHTML += `</ul>`;
+                questionHTML += `<p class='feedback' id='feedback${index}'></p>`;
+                quizContainer.innerHTML += questionHTML;
+            });
+        }
+        
+        function checkAnswer(element, correctAnswer) {
+            let feedbackElement = element.parentElement.nextElementSibling;
+            if (element.textContent === correctAnswer) {
+                feedbackElement.textContent = "✅ درست است!";
+                feedbackElement.className = "correct";
+            } else {
+                feedbackElement.textContent = `❌ نادرست! پاسخ صحیح: ${correctAnswer}`;
+                feedbackElement.className = "incorrect";
+            }
+        }
+        
+        loadQuiz();
+    </script>
+</body>
+</html>

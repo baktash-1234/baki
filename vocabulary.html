@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تمرین کلمات انگلیسی</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            background: #ffffff;
+            padding: 20px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            color: #ff5733;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #f9f9f9;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        .word {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .translation {
+            color: #d35400;
+            font-style: italic;
+        }
+        #wordInput {
+            padding: 10px;
+            font-size: 18px;
+            margin-top: 20px;
+            width: 70%;
+            border-radius: 5px;
+        }
+        #checkButton {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        #checkButton:hover {
+            background-color: #218838;
+        }
+        .href{
+            font-size: 25px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>تمرین کلمات انگلیسی</h1>
+        <table>
+            <tr>
+                <th>کلمه</th>
+                <th>معنی</th>
+            </tr>
+            <tr><td class="word">Apple</td><td class="translation">سیب</td></tr>
+            <tr><td class="word">Beautiful</td><td class="translation">زیبا</td></tr>
+            <tr><td class="word">Brave</td><td class="translation">شجاع</td></tr>
+            <tr><td class="word">Dream</td><td class="translation">رویا</td></tr>
+            <tr><td class="word">Future</td><td class="translation">آینده</td></tr>
+            <tr><td class="word">Hope</td><td class="translation">امید</td></tr>
+            <tr><td class="word">Journey</td><td class="translation">سفر</td></tr>
+            <tr><td class="word">Kindness</td><td class="translation">مهربانی</td></tr>
+            <tr><td class="word">Laugh</td><td class="translation">خنده</td></tr>
+            <tr><td class="word">Success</td><td class="translation">موفقیت</td></tr>
+            <tr><td class="word">Computer</td><td class="translation">کامپیوتر</td></tr>
+            <tr><td class="word">Laptop</td><td class="translation">لپ‌تاپ</td></tr>
+            <tr><td class="word">Energy</td><td class="translation">انرژی</td></tr>
+            <tr><td class="word">Smart</td><td class="translation">هوشمند</td></tr>
+            <tr><td class="word">Learn</td><td class="translation">یاد گرفتن</td></tr>
+            <tr><td class="word">Happiness</td><td class="translation">خوشحالی</td></tr>
+            <tr><td class="word">Challenge</td><td class="translation">چالش</td></tr>
+            <tr><td class="word">Strength</td><td class="translation">قدرت</td></tr>
+            <tr><td class="word">Memory</td><td class="translation">حافظه</td></tr>
+            <tr><td class="word">Knowledge</td><td class="translation">دانش</td></tr>
+        </table>
+        <div class="container">
+            <h1>تمرین کلمات انگلیسی</h1>
+            <p class="word-display" id="randomWord">کلمه را به درستی تایپ کنید</p>
+            <input id="wordInput" type="text" placeholder="کلمه را تایپ کنید..." />
+            <button id="checkButton">بررسی</button>
+            <p id="resultMessage"></p>
+        </div>
+    <a class="href" href="گرامر زبان .html">برای بازگشت به سایت قبلی اینجا کلیک کنید </a>
+        
+        <script>
+            const words = [
+                "Apple", "Beautiful", "Brave", "Dream", "Future", "Hope", "Journey", "Kindness", "Laugh", "Success",
+                "Computer", "Laptop", "Energy", "Smart", "Learn", "Happiness", "Challenge", "Strength", "Memory", "Knowledge"
+            ];
+    
+            const checkButton = document.getElementById("checkButton");
+            const wordInput = document.getElementById("wordInput");
+            const resultMessage = document.getElementById("resultMessage");
+            const randomWordElement = document.getElementById("randomWord");
+            
+            let currentWord = words[Math.floor(Math.random() * words.length)];
+            randomWordElement.textContent = currentWord;
+    
+            checkButton.addEventListener("click", function() {
+                const userInput = wordInput.value.trim();
+    
+                if (userInput.toLowerCase() === currentWord.toLowerCase()) {
+                    resultMessage.textContent = `درست است! شما کلمه '${currentWord}' را درست تایپ کردید.`;
+                    resultMessage.style.color = "#28a745";
+                } else {
+                    resultMessage.textContent = `متاسفم! شما کلمه '${currentWord}' را اشتباه تایپ کردید.`;
+                    resultMessage.style.color = "#e74c3c";
+                }
+                
+                // انتخاب کلمه جدید پس از بررسی
+                currentWord = words[Math.floor(Math.random() * words.length)];
+                randomWordElement.textContent = currentWord;
+                wordInput.value = "";
+            });
+        </script>
+</body>
+</html>
